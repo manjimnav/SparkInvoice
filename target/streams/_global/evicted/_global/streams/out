@@ -1,0 +1,10 @@
+[0m[[0m[0mdebug[0m] [0m[0m"not up to date. inChanged = true, force = true[0m
+[0m[[0m[0mdebug[0m] [0m[0mUpdating ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone updating [0m
+[0m[[0m[33mwarn[0m] [0m[0mFound version conflict(s) in library dependencies; some are suspected to be binary incompatible:[0m
+[0m[[0m[33mwarn[0m] [0m[0m	* com.univocity:univocity-parsers:2.7.3 is selected over 1.5.1[0m
+[0m[[0m[33mwarn[0m] [0m[0m	    +- anomalydetection:anomalydetection_2.11:1.0         (depends on 2.7.3)[0m
+[0m[[0m[33mwarn[0m] [0m[0m	    +- com.databricks:spark-csv_2.11:1.5.0                (depends on 1.5.1)[0m
+[0m[[0m[0minfo[0m] [0m[0mHere are other dependency conflicts that were resolved:[0m
+[0m[[0m[0minfo[0m] [0m[0m	* org.xerial.snappy:snappy-java:1.1.7.3 is selected over 1.1.7.1[0m
+[0m[[0m[0minfo[0m] [0m[0m	    +- org.apache.kafka:kafka-clients:2.0.0               (depends on 1.1.7.1)[0m
