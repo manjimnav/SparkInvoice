@@ -74,7 +74,8 @@ object InvoicePipeline {
       .mapWithState(StateSpec.function(mappingFunc _).timeout(Seconds(40))) // Construct model input
       .filter(modelInvoiceInput => modelInvoiceInput._2 != null) //Filter completed invoices
 
-    completedInvoices.filter(completedInvoiceInput => completedInvoiceInput._1.matches("^C\\d+$")) // Filter canceled invoices
+    // Filter canceled invoices
+    completedInvoices.filter(completedInvoiceInput => completedInvoiceInput._1.matches("^C\\d+$")) 
       .countByWindow(Minutes(8), Seconds(20)) // Count cancelled invoices in window of 8 minutes in intervals of 20 seconds
       .map(camceledInvoicesCount => ("", camceledInvoicesCount.toString)).foreachRDD(rdd => {
         publishToKafka("cancelaciones")(brokersBC)(rdd) // Publish to topic cancelaciones
@@ -101,7 +102,8 @@ object InvoicePipeline {
         publishToKafka("anomalias_bisect_kmeans")(brokersBC)(rdd) // Publish to bisect kmeans anomalies topic
       })
 
-    purchasesFeed.filter(entry => isInvalid(entry._2)) // Filter invalid purchases
+    // Filter invalid purchases
+    purchasesFeed.filter(entry => isInvalid(entry._2)) 
     .foreachRDD(rdd => {
       publishToKafka("facturas_erroneas")(brokersBC)(rdd) // Publish to facturaserroneas topic
     })
